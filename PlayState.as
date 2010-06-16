@@ -3,37 +3,44 @@ package {
 
     public class PlayState extends FlxState {
 
-        public var paddleLeft:FlxSprite;
-        public var paddleRight:FlxSprite;
-        public var ball:FlxSprite;
+        public var paddleLeft:Paddle;
+        public var paddleRight:Paddle;
+        public var ball:Ball;
 
         override public function create() : void {
             add(new FlxText(0, 0, 100, "Hello, world!"));
 
             // make the objects
-            paddleLeft = new FlxSprite(8, 120);
-            paddleLeft.createGraphic(8, 8 * 4);
+            paddleLeft = new Paddle(8, 120);
             add(paddleLeft);
-            paddleRight = new FlxSprite(320 - 16, 120);
-            paddleRight.createGraphic(8, 8 * 4);
+            paddleRight = new Paddle(320 - 16, 120);
             add(paddleRight);
-            ball = new FlxSprite(160, 120);
+            ball = new Ball(160, 120);
             add(ball);
 
             // configure the gamepads
             FlxG.gamepads[0].bind("W", "S");
             FlxG.gamepads[1].bind("UP", "DOWN");
+
+            ball.serve();
         }
 
         override public function update() : void {
-            paddleLeft.acceleration.y = FlxG.gamepads[0].UP   ? -100
-                                      : FlxG.gamepads[0].DOWN ?  100
-                                      :                            0
+            // Control the paddles.
+            paddleLeft.acceleration.y = FlxG.gamepads[0].UP   ? -1000
+                                      : FlxG.gamepads[0].DOWN ?  1000
+                                      :                             0
                                       ;
-            paddleRight.acceleration.y = FlxG.gamepads[1].UP   ? -100
-                                       : FlxG.gamepads[1].DOWN ?  100
-                                       :                            0
+            paddleRight.acceleration.y = FlxG.gamepads[1].UP   ? -1000
+                                       : FlxG.gamepads[1].DOWN ?  1000
+                                       :                             0
                                        ;
+
+            // Did the ball hit a paddle?
+            var paddles:FlxGroup = new FlxGroup();
+            paddles.add(paddleLeft);
+            paddles.add(paddleRight);
+            ball.collide(paddles);
 
             super.update();
         }
