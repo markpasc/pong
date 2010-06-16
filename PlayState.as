@@ -26,19 +26,14 @@ package {
         }
 
         override public function update() : void {
-            if (FlxG.gamepads[0].UP) {
-                paddleLeft.y -= 1;
-            }
-            else if (FlxG.gamepads[0].DOWN) {
-                paddleLeft.y += 1;
-            }
-
-            if (FlxG.gamepads[1].UP) {
-                paddleRight.y -= 1;
-            }
-            else if (FlxG.gamepads[1].DOWN) {
-                paddleRight.y += 1;
-            }
+            paddleLeft.acceleration.y = FlxG.gamepads[0].UP   ? -100
+                                      : FlxG.gamepads[0].DOWN ?  100
+                                      :                            0
+                                      ;
+            paddleRight.acceleration.y = FlxG.gamepads[1].UP   ? -100
+                                       : FlxG.gamepads[1].DOWN ?  100
+                                       :                            0
+                                       ;
 
             super.update();
         }
