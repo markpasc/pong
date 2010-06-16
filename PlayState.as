@@ -27,14 +27,8 @@ package {
 
         override public function update() : void {
             // Control the paddles.
-            paddleLeft.acceleration.y = FlxG.gamepads[0].UP   ? -1000
-                                      : FlxG.gamepads[0].DOWN ?  1000
-                                      :                             0
-                                      ;
-            paddleRight.acceleration.y = FlxG.gamepads[1].UP   ? -1000
-                                       : FlxG.gamepads[1].DOWN ?  1000
-                                       :                             0
-                                       ;
+            paddleLeft.move(FlxG.gamepads[0]);
+            paddleRight.move(FlxG.gamepads[1]);
 
             // Did the ball hit a paddle?
             var paddles:FlxGroup = new FlxGroup();
