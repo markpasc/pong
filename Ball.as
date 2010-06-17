@@ -2,11 +2,20 @@ package {
     import org.flixel.*;
 
     public class Ball extends FlxSprite {
+
+        public var originalX:Number;
+        public var originalY:Number;
+
         override public function Ball(x:Number, y:Number) {
+            originalX = x;
+            originalY = y;
             super(x, y);
+            dead = true;
         }
 
         public function serve() : void {
+            reset(originalX, originalY);
+
             velocity.y = FlxU.random() * 100;
             velocity.x = FlxU.random() * 100 + 100;
         }

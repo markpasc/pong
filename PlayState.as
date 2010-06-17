@@ -36,11 +36,15 @@ package {
             // configure the gamepads
             FlxG.gamepads[0].bind("W", "S");
             FlxG.gamepads[1].bind("UP", "DOWN");
-
-            ball.serve();
         }
 
         override public function update() : void {
+            // Need a ball?
+            if (ball.dead && FlxG.keys.SPACE) {
+                FlxG.log("YAY SERVING BALL :D");
+                ball.serve();
+            }
+
             // Control the paddles.
             paddleLeft.move(FlxG.gamepads[0]);
             paddleRight.move(FlxG.gamepads[1]);
