@@ -13,9 +13,11 @@ package {
 
         override public function hitLeft(contact:FlxObject, velocity:Number) : void {
             this.velocity.x *= -1;
+            this.velocity.x += 10;
         }
         override public function hitRight(contact:FlxObject, velocity:Number) : void {
-            hitLeft(contact, velocity);
+            this.velocity.x *= -1;
+            this.velocity.x -= 10;
         }
     }
 }
