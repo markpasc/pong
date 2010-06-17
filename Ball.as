@@ -7,17 +7,21 @@ package {
         }
 
         public function serve() : void {
-            velocity.y = FlxU.random() * 10;
+            velocity.y = FlxU.random() * 100;
             velocity.x = FlxU.random() * 100 + 100;
         }
 
         override public function hitLeft(contact:FlxObject, velocity:Number) : void {
             this.velocity.x *= -1;
             this.velocity.x += 10;
+
+            this.velocity.y = contact.velocity.y;
         }
         override public function hitRight(contact:FlxObject, velocity:Number) : void {
             this.velocity.x *= -1;
             this.velocity.x -= 10;
+
+            this.velocity.y = contact.velocity.y;
         }
     }
 }
