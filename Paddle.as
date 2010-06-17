@@ -9,6 +9,10 @@ package {
             maxVelocity = new FlxPoint(0, 500);
         }
 
+        override public function hitSide(contact:FlxObject, velocity:Number) : void {
+            // Don't move.
+        }
+
         override public function hitBottom(contact:FlxObject, velocity:Number) : void {
             acceleration.y = 0;
             this.velocity.y = 0;
