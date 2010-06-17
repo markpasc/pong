@@ -23,5 +23,12 @@ package {
 
             this.velocity.y = contact.velocity.y;
         }
+
+        override public function hitTop(contact:FlxObject, velocity:Number) : void {
+            this.velocity.y *= -1;
+        }
+        override public function hitBottom(contact:FlxObject, velocity:Number) : void {
+            hitTop(contact, velocity);
+        }
     }
 }

@@ -51,6 +51,7 @@ package {
             paddles.add(paddleRight);
             ball.collide(paddles);
 
+            // Did something hit a wall?
             walls.collide(paddles);
             walls.collide(ball);
 
