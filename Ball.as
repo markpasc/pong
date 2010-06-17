@@ -8,7 +8,7 @@ package {
 
         public function serve() : void {
             velocity.y = FlxU.random() * 10;
-            velocity.x = FlxU.random() * 100;
+            velocity.x = FlxU.random() * 100 + 100;
         }
 
         override public function hitLeft(contact:FlxObject, velocity:Number) : void {
