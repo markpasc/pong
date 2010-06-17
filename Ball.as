@@ -10,12 +10,10 @@ package {
             originalX = x;
             originalY = y;
             super(x, y);
-            dead = true;
+            FlxG.followTarget = this;
         }
 
         public function serve() : void {
-            reset(originalX, originalY);
-
             velocity.y = FlxU.random() * 100;
             velocity.x = FlxU.random() * 100 + 100;
         }
