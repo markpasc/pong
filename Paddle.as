@@ -6,7 +6,7 @@ package {
         public function Paddle(x:Number, y:Number) {
             super(x, y);
             createGraphic(8, 8 * 4);
-            maxVelocity = new FlxPoint(0, 100);
+            maxVelocity = new FlxPoint(0, 500);
         }
 
         override public function hitBottom(contact:FlxObject, velocity:Number) : void {
@@ -22,6 +22,17 @@ package {
                            : pad.DOWN ?  1000
                            :                0
                            ;
+
+            // Also leak velocity.
+            if (velocity.y > 10) {
+                velocity.y -= 10;
+            }
+            else if (velocity.y < -10) {
+                velocity.y += 10;
+            }
+            else {
+                velocity.y = 0;
+            }
         }
     }
 }
