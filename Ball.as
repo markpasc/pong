@@ -10,7 +10,6 @@ package {
             originalX = x;
             originalY = y;
             super(x, y);
-            FlxG.followTarget = this;
         }
 
         public function serve() : void {
