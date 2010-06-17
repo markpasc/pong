@@ -21,14 +21,17 @@ package {
 
             // make the playfield walls
             walls = new FlxGroup();
-            var wall:FlxObject = new FlxObject(160, -4);
-            wall.width = 336;
-            wall.height = 8;
+            var wall:FlxSprite = new FlxSprite(0, 0);
+            wall.createGraphic(320, 8);
+            wall.moves = false;
+            wall.maxVelocity = new FlxPoint(0, 0);
             walls.add(wall);
-            wall = new FlxObject(160, 244);
-            wall.width = 336;
-            wall.height = 8;
+            wall = new FlxSprite(0, 240 - 8);
+            wall.createGraphic(320, 8);
+            wall.moves = false;
+            wall.maxVelocity = new FlxPoint(0, 0);
             walls.add(wall);
+            add(walls);
 
             // configure the gamepads
             FlxG.gamepads[0].bind("W", "S");
