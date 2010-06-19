@@ -23,7 +23,7 @@ package {
 
             // configure the gamepads
             FlxG.gamepads[0].bind("W", "S");
-            FlxG.gamepads[1].bind("UP", "DOWN");
+            FlxG.gamepads[1].bind("I", "K");
 
             stuff = new FlxGroup();
 
