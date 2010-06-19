@@ -4,7 +4,7 @@ package {
 
     public class HelloWorld extends FlxGame {
         public function HelloWorld() {
-            super(320, 240, PlayState, 2);  // pixel doubled
+            super(320, 240, TitleState, 2);  // pixel doubled
         }
     }
 }
