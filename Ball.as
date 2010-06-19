@@ -21,13 +21,13 @@ package {
             this.velocity.x *= -1;
             this.velocity.x += 10;
 
-            this.velocity.y = contact.velocity.y;
+            this.velocity.y += contact.velocity.y / 2;
         }
         override public function hitRight(contact:FlxObject, velocity:Number) : void {
             this.velocity.x *= -1;
             this.velocity.x -= 10;
 
-            this.velocity.y = contact.velocity.y;
+            this.velocity.y += contact.velocity.y / 2;
         }
 
         override public function hitTop(contact:FlxObject, velocity:Number) : void {
