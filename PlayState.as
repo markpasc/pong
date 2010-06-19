@@ -10,11 +10,16 @@ package {
         public var scorezoneLeft:FlxSprite;
         public var scorezoneRight:FlxSprite;
 
-        override public function create() : void {
-            add(new FlxText(0, 0, 100, "Hello, world!"));
+        public var serveLabel:FadeText;
 
+        override public function create() : void {
             // Set big world bounds so Flixel will collide our score zones.
             FlxU.setWorldBounds(-320, -240, 960, 720);
+
+            serveLabel = new FadeText(160 - 70, 140, 140, "space to serve");
+            serveLabel.size = 8;
+            serveLabel.alignment = "center";
+            add(serveLabel);
 
             // make the objects
             paddleLeft = new Paddle(8, 120 - 16);
@@ -64,6 +69,7 @@ package {
                 ball = new Ball(160, 120);
                 add(ball);
                 ball.serve();
+                serveLabel.fade();
             }
 
             // Control the paddles.
