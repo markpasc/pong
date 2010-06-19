@@ -13,6 +13,7 @@ package {
         override public function create() : void {
             add(new FlxText(0, 0, 100, "Hello, world!"));
 
+            // Set big world bounds so Flixel will collide our score zones.
             FlxU.setWorldBounds(-320, -240, 960, 720);
 
             // make the objects
@@ -71,7 +72,13 @@ package {
 
             stuff.collide(stuff);
             if (ball != null) {
+                // Don't let the ball push the paddles.
+                paddleLeft.fixed = true;
+                paddleRight.fixed = true;
                 ball.collide(stuff);
+                paddleLeft.fixed = false;
+                paddleRight.fixed = false;
+
                 if (ball.collide(scorezoneLeft) || ball.collide(scorezoneRight)) {
                     defaultGroup.remove(ball);
                     ball = null;
