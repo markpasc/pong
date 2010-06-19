@@ -26,10 +26,11 @@ package {
         }
 
         override public function update() : void {
-            acceleration.y = pad.UP   ? -1000
-                           : pad.DOWN ?  1000
-                           :                0
-                           ;
+            acceleration.y /= 2;
+            acceleration.y += pad.UP   ? -900
+                            : pad.DOWN ?  900
+                            :               0
+                            ;
 
             // Also leak velocity.
             if (velocity.y > 10) {
