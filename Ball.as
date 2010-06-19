@@ -12,9 +12,12 @@ package {
             super(x, y);
         }
 
-        public function serve() : void {
-            velocity.y = FlxU.random() * 100;
+        public function serve(swap:Boolean) : void {
+            velocity.y = FlxU.random() * 200 - 100;
             velocity.x = FlxU.random() * 100 + 100;
+            if (swap) {
+                velocity.x = -velocity.x;
+            }
         }
 
         override public function hitLeft(contact:FlxObject, velocity:Number) : void {

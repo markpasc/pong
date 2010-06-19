@@ -9,6 +9,7 @@ package {
         public var stuff:FlxGroup;
         public var scorezoneLeft:FlxSprite;
         public var scorezoneRight:FlxSprite;
+        public var serve:uint = 0;
 
         public var serveLabel:FadeText;
 
@@ -64,11 +65,12 @@ package {
             // Need a ball?
             if (ball == null && FlxG.keys.SPACE) {
                 FlxG.log("YAY SERVING BALL :D");
+                serveLabel.fade();
 
                 ball = new Ball(160, 120);
                 add(ball);
-                ball.serve();
-                serveLabel.fade();
+                ball.serve(serve > 1);
+                serve = (serve + 1) % 4;
             }
 
             stuff.collide(stuff);
