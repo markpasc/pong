@@ -3,10 +3,14 @@ package {
     import org.flixel.data.FlxGamepad;
 
     public class Paddle extends FlxSprite {
-        public function Paddle(x:Number, y:Number) {
+
+        public var pad:FlxGamepad;
+
+        public function Paddle(x:Number, y:Number, pad:FlxGamepad) {
             super(x, y);
             createGraphic(8, 8 * 4);
             maxVelocity = new FlxPoint(0, 500);
+            this.pad = pad;
         }
 
         override public function hitSide(contact:FlxObject, velocity:Number) : void {
@@ -21,7 +25,7 @@ package {
             hitBottom(contact, velocity);
         }
 
-        public function move(pad:FlxGamepad) : void {
+        override public function update() : void {
             acceleration.y = pad.UP   ? -1000
                            : pad.DOWN ?  1000
                            :                0
@@ -37,6 +41,8 @@ package {
             else {
                 velocity.y = 0;
             }
+
+            super.update();
         }
     }
 }

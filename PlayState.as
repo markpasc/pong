@@ -21,14 +21,20 @@ package {
             serveLabel.alignment = "center";
             add(serveLabel);
 
-            // make the objects
-            paddleLeft = new Paddle(8, 120 - 16);
+            // configure the gamepads
+            FlxG.gamepads[0].bind("W", "S");
+            FlxG.gamepads[1].bind("UP", "DOWN");
+
+            stuff = new FlxGroup();
+
+            paddleLeft = new Paddle(8, 120 - 16, FlxG.gamepads[0]);
             add(paddleLeft);
-            paddleRight = new Paddle(320 - 16, 120 - 16);
+            stuff.add(paddleLeft);
+            paddleRight = new Paddle(320 - 16, 120 - 16, FlxG.gamepads[1]);
             add(paddleRight);
+            stuff.add(paddleRight);
 
             // make the playfield walls
-            stuff = new FlxGroup();
             var wall:FlxSprite = new FlxSprite(0, -320);
             wall.createGraphic(320, 328);
             wall.fixed = true;
@@ -42,9 +48,6 @@ package {
             add(wall);
             stuff.add(wall);
 
-            stuff.add(paddleLeft);
-            stuff.add(paddleRight);
-
             scorezoneLeft = new FlxSprite(-128, 0);
             scorezoneLeft.createGraphic(120, 240);
             scorezoneLeft.fixed = true;
@@ -55,10 +58,6 @@ package {
             scorezoneRight.fixed = true;
             scorezoneRight.maxVelocity = new FlxPoint(0, 0);
             add(scorezoneRight);
-
-            // configure the gamepads
-            FlxG.gamepads[0].bind("W", "S");
-            FlxG.gamepads[1].bind("UP", "DOWN");
         }
 
         override public function update() : void {
@@ -71,10 +70,6 @@ package {
                 ball.serve();
                 serveLabel.fade();
             }
-
-            // Control the paddles.
-            paddleLeft.move(FlxG.gamepads[0]);
-            paddleRight.move(FlxG.gamepads[1]);
 
             stuff.collide(stuff);
             if (ball != null) {
