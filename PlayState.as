@@ -16,9 +16,9 @@ package {
             FlxU.setWorldBounds(-320, -240, 960, 720);
 
             // make the objects
-            paddleLeft = new Paddle(8, 120);
+            paddleLeft = new Paddle(8, 120 - 16);
             add(paddleLeft);
-            paddleRight = new Paddle(320 - 16, 120);
+            paddleRight = new Paddle(320 - 16, 120 - 16);
             add(paddleRight);
 
             // make the playfield walls
