@@ -3,12 +3,16 @@ package {
 
     public class TitleState extends FlxState {
 
+        public var label:FadeText;
+        public var figure:FlxGroup;
+        public var countdown:uint = 0;
+
         override public function create() : void {
-            var label:FlxText = new FlxText(110, 150, 100, "Click to start");
+            label = new FadeText(110, 150, 100, "Click to start");
             label.alignment = "center";
             add(label);
 
-            var figure:FlxGroup = new FlxGroup();
+            figure = new FlxGroup();
             var ground:FlxGroup = new FlxGroup();
 
             var whitedata:Array = [
@@ -81,6 +85,18 @@ package {
 
         override public function update() : void {
             if (FlxG.mouse.justPressed()) {
+                label.fade();
+
+                for (var i:String in figure.members) {
+                    var chunk:FlxObject = figure.members[i];
+                    chunk.acceleration.x = FlxU.random() * 2000 - 1000;
+                    chunk.acceleration.y = FlxU.random() * 2000 - 1000;
+                }
+
+                countdown = 50;
+            }
+
+            if (label.alpha == 0 && countdown-- == 0) {
                 FlxG.state = new PlayState();
             }
 
