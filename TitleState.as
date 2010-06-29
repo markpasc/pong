@@ -8,7 +8,7 @@ package {
         public var countdown:uint = 0;
 
         override public function create() : void {
-            label = new FadeText(110, 150, 100, "Click to start");
+            label = new FadeText(192 - 50, 150, 100, "Click to start");
             label.alignment = "center";
             add(label);
 
@@ -45,7 +45,7 @@ package {
             var thing:FlxSprite;
             for (var i:String in whitedata) {
                 var bit:Array = whitedata[i];
-                thing = new FlxSprite(160 + 8 * bit[0], 80 + 8 * bit[1]);
+                thing = new FlxSprite(192 + 8 * bit[0], 80 + 8 * bit[1]);
                 thing.createGraphic(8 * bit[2], 8 * bit[3]);
                 figure.add(thing);
             }
@@ -75,7 +75,7 @@ package {
 
             for (i in blackdata) {
                 bit = blackdata[i];
-                thing = new FlxSprite(160 + 8 * bit[0] + 1, 80 + 8 * bit[1] + 1);
+                thing = new FlxSprite(192 + 8 * bit[0] + 1, 80 + 8 * bit[1] + 1);
                 thing.createGraphic(8 * bit[2] - 2, 8 * bit[3] - 2);
                 thing.color = 0x00000000;
                 ground.add(thing);
