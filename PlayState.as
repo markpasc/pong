@@ -13,6 +13,8 @@ package {
 
         public var serveLabel:FadeText;
 
+        [Embed(source="sound/oops.mp3")] private var oops:Class;
+
         override public function create() : void {
             // Set big world bounds so Flixel will collide our score zones.
             FlxU.setWorldBounds(-320, -240, 960, 720);
@@ -83,6 +85,7 @@ package {
                 paddleRight.fixed = false;
 
                 if (ball.collide(scorezoneLeft) || ball.collide(scorezoneRight)) {
+                    FlxG.play(oops);
                     defaultGroup.remove(ball);
                     ball = null;
                 }

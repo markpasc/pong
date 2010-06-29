@@ -6,6 +6,8 @@ package {
 
         public var pad:FlxGamepad;
 
+        [Embed(source="sound/hit.mp3")] private var hit:Class;
+
         public function Paddle(x:Number, y:Number, pad:FlxGamepad) {
             super(x, y);
             createGraphic(8, 8 * 4);
@@ -15,6 +17,7 @@ package {
 
         override public function hitSide(contact:FlxObject, velocity:Number) : void {
             // Don't move.
+            FlxG.play(hit);
         }
 
         override public function hitBottom(contact:FlxObject, velocity:Number) : void {

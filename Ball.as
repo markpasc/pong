@@ -6,6 +6,8 @@ package {
         public var originalX:Number;
         public var originalY:Number;
 
+        [Embed(source="sound/bounce.mp3")] private var bounce:Class;
+
         override public function Ball(x:Number, y:Number) {
             originalX = x;
             originalY = y;
@@ -35,6 +37,7 @@ package {
 
         override public function hitTop(contact:FlxObject, velocity:Number) : void {
             this.velocity.y *= -1;
+            FlxG.play(bounce);
         }
         override public function hitBottom(contact:FlxObject, velocity:Number) : void {
             hitTop(contact, velocity);
